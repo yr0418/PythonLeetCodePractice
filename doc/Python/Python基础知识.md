@@ -894,6 +894,7 @@ print("修改后列表：", my_list)
 
 ```python
 dict = {}
+# 字典赋值
 dict['one'] = "This is one"
 dict[2] = "This is two"
 
