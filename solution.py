@@ -51,3 +51,26 @@ class Solution:
             else:
                 return 0
         return result if x > 0 else -result
+
+    def is_palindrome_1(self, x) -> bool:
+        """
+        :type x: int
+        :rtype: bool
+        :description: 回文数判断，借助字符串
+        """
+        # str(x)[::-1]：逆置截取全部字符，步长-1表示逆置截取字符串。
+        return str(x) == str(x)[::-1]
+
+    def is_palindrome_2(self, x) -> bool:
+        """
+        :type x: int
+        :rtype: bool
+        :description: 回文数判断，反转一半的数字
+        """
+        if x < 0 or (x % 10 == 0 and x != 0):
+            return False
+        reverted_number = 0
+        while x > reverted_number:
+            reverted_number = reverted_number * 10 + x % 10
+            x //= 10
+        return x == reverted_number or x == reverted_number // 10
