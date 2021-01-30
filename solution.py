@@ -52,7 +52,7 @@ class Solution:
                 return 0
         return result if x > 0 else -result
 
-    def is_palindrome_1(self, x) -> bool:
+    def is_palindrome_1(self, x: int) -> bool:
         """
         :type x: int
         :rtype: bool
@@ -61,7 +61,7 @@ class Solution:
         # str(x)[::-1]：逆置截取全部字符，步长-1表示逆置截取字符串。
         return str(x) == str(x)[::-1]
 
-    def is_palindrome_2(self, x) -> bool:
+    def is_palindrome_2(self, x: int) -> bool:
         """
         :type x: int
         :rtype: bool
@@ -74,3 +74,131 @@ class Solution:
             reverted_number = reverted_number * 10 + x % 10
             x //= 10
         return x == reverted_number or x == reverted_number // 10
+
+    def romanToInt_1(self, s: str) -> int:
+        """
+        :type s: str
+        :rtype: int
+        :description: 罗马数，暴力破解，字符串匹配
+        """
+        i, num = 0, 0
+        while i < len(s):
+            if s[i] == 'M':
+                num = num + 1000
+                i = i + 1
+            elif s[i] == 'D':
+                num = num + 500
+                i = i + 1
+            elif s[i] == 'C':
+                if i == len(s) - 1:
+                    num = num + 100
+                    i = i + 1
+                elif s[i + 1] == 'D':
+                    num = num + 400
+                    i = i + 2
+                elif s[i + 1] == 'M':
+                    num = num + 900
+                    i = i + 2
+                else:
+                    num = num + 100
+                    i = i + 1
+            elif s[i] == 'L':
+                num = num + 50
+                i = i + 1
+            elif s[i] == 'X':
+                if i == len(s) - 1:
+                    num = num + 10
+                    i = i + 1
+                elif s[i+1] == 'L':
+                    num = num + 40
+                    i = i + 2
+                elif s[i+1] == 'C':
+                    num = num + 90
+                    i = i + 2
+                else:
+                    num = num + 10
+                    i = i + 1
+            elif s[i] == 'V':
+                num = num + 5
+                i = i + 1
+            elif s[i] == 'I':
+                if i == len(s)-1:
+                    num = num + 1
+                    i = i + 1
+                elif s[i+1] == 'V':
+                    num = num + 4
+                    i = i + 2
+                elif s[i+1] == 'X':
+                    num = num + 9
+                    i = i + 2
+                else:
+                    num = num + 1
+                    i = i + 1
+        return num
+
+    def romanToInt_2(self, s: str) -> int:
+        """
+        :type s: str
+        :rtype: int
+        :description: 罗马数，罗马数规律
+        """
+        prenum, num, sum = Solution.get_num(s[0]), 0, 0
+        for i in range(1, len(s)):
+            num = Solution.get_num(s[i])
+            if prenum < num:
+                sum = sum - prenum
+            else:
+                sum = sum + prenum
+            prenum = num
+        return sum + prenum
+
+    @classmethod  # 加入 @classmethod 注释，方便直接调用该方法
+    def get_num(cls, s: str) -> int:
+        num = 0
+        if s == 'M':
+            num = 1000
+        elif s == 'D':
+            num = 500
+        elif s == 'C':
+            num = 100
+        elif s == 'L':
+            num = 50
+        elif s == 'X':
+            num = 10
+        elif s == 'V':
+            num = 5
+        elif s == 'I':
+            num = 1
+        return num
+
+    def romanToInt_3(self, s: str) -> int:
+        """
+        :type s: str
+        :rtype: int
+        :description: 罗马数，罗马数规律，利用哈希表取值
+        """
+        roman_int = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        int = 0
+        for index in range(len(s)-1):
+            if roman_int[s[index]] < roman_int[s[index+1]]:
+                int -= roman_int[s[index]]
+            else:
+                int += roman_int[s[index]]
+        return int + roman_int[s[-1]]
+
+    def romanToInt_4(self, s: str) -> int:
+        """
+        :type s: str
+        :rtype: int
+        :description: 罗马数，利用字典进行字符串匹配
+        """
+        # 注意在字典中 IX = 8，因为对于 XIX，第一次str1 = XI，匹配到 I，则 result+1，第二次匹配到 IX，则result + 8，两次合起来实现 IX = 9
+        d = {'I': 1, 'IV': 3, 'V': 5, 'IX': 8, 'X': 10, 'XL': 30, 'L': 50, 'XC': 80, 'C': 100, 'CD': 300, 'D': 500, 'CM': 800, 'M': 1000}
+        result = 0
+        for i, n in enumerate(s):
+            str1 = s[max(i - 1, 0):i + 1]  # 作者解析中的2就是用这行代码实现的
+            if str1 in d:
+                result += d.get(str1)
+            else:
+                result += d[n]
+        return result
