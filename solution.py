@@ -4,6 +4,7 @@
 # @Author : 杨睿
 # @Time : 2021-01-14 23:21
 from typing import *
+import math
 
 
 class Solution:
@@ -39,13 +40,14 @@ class Solution:
         :rtype: int
         :description：整数反转
         """
-        result = 0
-        while x != 0:
-            pop = x % 10
-            x = x / 10
+        y, result = abs(x), 0  # 将 x 取绝对值，方便处理 负数，具体原因见 算法练习--2.3
+        while y != 0:
+            pop = y % 10
+            y = y // 10  # 求余数，向下取整，单纯的 / 号，会使得 int 变成 float 类型
             result = result * 10 + pop
+            #  边界的表示方法： boundry = (1<<31) -1 if x>0 else 1<<31。 result > boundry 即表示超过边界
             if -pow(2, 31) <= result <= pow(2, 31) - 1:
                 continue
             else:
                 return 0
-        return result
+        return result if x > 0 else -result
