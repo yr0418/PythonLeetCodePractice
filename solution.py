@@ -10,10 +10,7 @@ import math
 class Solution:
     def twoSum_1(self, nums: List[int], target: int) -> List[int]:
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        :description：两数之和，暴力破解
+        description：两数之和，暴力破解
         """
         for index1 in range(len(nums)):
             for index2 in range(index1 + 1, len(nums)):
@@ -22,9 +19,6 @@ class Solution:
 
     def twoSum_2(self, nums: List[int], target: int) -> List[int]:
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
         :description：两数之和，哈希表
         """
         hashtable = dict()
@@ -36,8 +30,6 @@ class Solution:
 
     def reverse(self, x: int) -> int:
         """
-        :type x: int
-        :rtype: int
         :description：整数反转
         """
         y, result = abs(x), 0  # 将 x 取绝对值，方便处理 负数，具体原因见 算法练习--2.3
@@ -54,8 +46,6 @@ class Solution:
 
     def is_palindrome_1(self, x: int) -> bool:
         """
-        :type x: int
-        :rtype: bool
         :description: 回文数判断，借助字符串
         """
         # str(x)[::-1]：逆置截取全部字符，步长-1表示逆置截取字符串。
@@ -63,8 +53,6 @@ class Solution:
 
     def is_palindrome_2(self, x: int) -> bool:
         """
-        :type x: int
-        :rtype: bool
         :description: 回文数判断，反转一半的数字
         """
         if x < 0 or (x % 10 == 0 and x != 0):
@@ -77,8 +65,6 @@ class Solution:
 
     def romanToInt_1(self, s: str) -> int:
         """
-        :type s: str
-        :rtype: int
         :description: 罗马数，暴力破解，字符串匹配
         """
         i, num = 0, 0
@@ -138,8 +124,6 @@ class Solution:
 
     def romanToInt_2(self, s: str) -> int:
         """
-        :type s: str
-        :rtype: int
         :description: 罗马数，罗马数规律
         """
         prenum, num, sum = Solution.get_num(s[0]), 0, 0
@@ -173,8 +157,6 @@ class Solution:
 
     def romanToInt_3(self, s: str) -> int:
         """
-        :type s: str
-        :rtype: int
         :description: 罗马数，罗马数规律，利用哈希表取值
         """
         roman_int = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
@@ -188,8 +170,6 @@ class Solution:
 
     def romanToInt_4(self, s: str) -> int:
         """
-        :type s: str
-        :rtype: int
         :description: 罗马数，利用字典进行字符串匹配
         """
         # 注意在字典中 IX = 8，因为对于 XIX，第一次str1 = XI，匹配到 I，则 result+1，第二次匹配到 IX，则result + 8，两次合起来实现 IX = 9
@@ -202,3 +182,51 @@ class Solution:
             else:
                 result += d[n]
         return result
+
+    def longestCommonPrefix_1(self, strs: List[str]) -> str:
+        """
+        :description: 最长公共前缀，字符串截取
+        """
+        if not strs:
+            return ""
+        else:
+            str_1 = strs[0]
+            for i in range(len(str_1)):
+                for j in range(len(strs)):
+                    # 正常情况
+                    if strs[j][:i+1] != str_1[:i+1]:
+                        return str_1[:i]
+                    else:
+                        continue
+            # 解决异常情况，当strs里的值都是相同的时候
+            return str_1
+
+    def longestCommonPrefix_2(self, strs: List[str]) -> str:
+        """
+        :description: 最长公共前缀，字符串匹配，算法优化
+        """
+        if not strs:
+            return ""
+        # 利用 min 和 max 取 strs 中最长和最短的字符串
+        str0 = min(strs)
+        str1 = max(strs)
+        for i in range(len(str0)):
+            if str0[i] != str1[i]:
+                return str0[:i]
+        return str0
+
+    def longestCommonPrefix_3(self, strs: List[str]) -> str:
+        """
+        :description: 最长公共前缀，字符串匹配，算法优化
+        """
+        if not strs:
+            return ""
+        length, count = len(strs[0]), len(strs)
+        for i in range(length):
+            c = strs[0][i]
+            if any(i == len(strs[j]) or strs[j][i] != c for j in range(1, count)):
+                return strs[0][:i]
+
+        return strs[0]
+
+
