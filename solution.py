@@ -229,4 +229,58 @@ class Solution:
 
         return strs[0]
 
+    def isValid_1(self, s: str) -> bool:
+        """
+        :description: 有效的括号，遍历匹配
+        :param s: 只含括号的字符串
+        :return: bool
+        """
+        list_1, str_1 = [], ""
+        for i in range(len(s)):
+            if s[i] == '{' or s[i] == '[' or s[i] == '(':
+                list_1.append(s[i])
+            elif s[i] == '}':
+                if len(list_1) == 0:
+                    return False
+                else:
+                    str_1 = list_1.pop(-1)
+                    if str_1 != '{':
+                        return False
+
+            elif s[i] == ']':
+                if len(list_1) == 0:
+                    return False
+                else:
+                    str_1 = list_1.pop(-1)
+                    if str_1 != '[':
+                        return False
+
+            elif s[i] == ')':
+                if len(list_1) == 0:
+                    return False
+                else:
+                    str_1 = list_1.pop(-1)
+                    if str_1 != '(':
+                        return False
+        return len(list_1) == 0
+
+    def isValid_2(self, s: str) -> bool:
+        """
+        :description: 有效的括号，利用字典匹配
+        :param s: 只含括号的字符串
+        :return: bool
+        """
+        if len(s) % 2 == 1:
+            return False
+        else:
+            pairs = {")": "(", "]": "[", "}": "{"}
+            list_1 = []
+            for ch in s:
+                if ch in pairs:
+                    if not list_1 or list_1[-1] != pairs[ch]:
+                        return False
+                    list_1.pop()
+                else:
+                    list_1.append(ch)
+            return not list_1
 
