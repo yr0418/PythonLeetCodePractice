@@ -296,3 +296,41 @@ class Solution:
                 i = i + 1
                 nums[i] = nums[j]
         return i+1
+
+    def removeElement_1(self, nums: List[int], val: int) -> int:
+        """
+        :description: 移除数组中的指定元素，双指针，val后移
+        :param nums:
+        :param val:
+        :return:
+        """
+        i, count = 0, len(nums)
+        while i < count:
+            if nums[i] == val:
+                nums[i] = nums[count-1]
+                count -= 1
+            else:
+                i += 1
+
+        return count
+
+    def removeElement_2(self, nums: List[int], val: int) -> int:
+        """
+        :description: 移除数组中的指定元素，双指针，元素前移
+        :param nums:
+        :param val:
+        :return:
+        """
+        a, b = 0, 0
+
+        while a < len(nums):
+            if nums[a] != val:
+                nums[b] = nums[a]
+                b += 1
+            a += 1
+
+        return b
+
+
+        
+
