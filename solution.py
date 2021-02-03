@@ -351,7 +351,32 @@ class Solution:
                             return i
             return -1
 
+    def searchInsert_1(self, nums: List[int], target: int) -> int:
+        """
+        :description: 搜索插入位置，暴力破解
+        :param nums:
+        :param target:
+        :return:
+        """
+        if not nums:
+            return 0
+        for i in range(0, len(nums)):
+            if nums[i] >= target:
+                return i
+        return len(nums)
 
-
-        
-
+    def searchInsert_2(self, nums: List[int], target: int) -> int:
+        """
+        :description: 搜索插入位置，二分查找
+        :param nums:
+        :param target:
+        :return:
+        """
+        left, right = 0, len(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid
+        return left
