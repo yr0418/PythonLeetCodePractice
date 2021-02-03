@@ -331,6 +331,27 @@ class Solution:
 
         return b
 
+    def strStr(self, haystack: str, needle: str) -> int:
+        """
+        :description: 实现strStr() 函数
+        :param haystack:
+        :param needle:
+        :return:
+        """
+        if needle == "":
+            return 0
+        elif needle != "" and haystack == "":
+            return -1
+        else:
+            len_1, len_2 = len(haystack), len(needle)
+            for i in range(len_1):
+                if haystack[i] == needle[0]:
+                    if i + len_2 <= len_1:
+                        if haystack[i:i+len_2] == needle:
+                            return i
+            return -1
+
+
 
         
 
