@@ -380,3 +380,37 @@ class Solution:
             else:
                 right = mid
         return left
+
+    def countAndSay(self, n: int) -> str:
+        """
+        :description: 输出外观数列的第 n 项
+        :param n:
+        :return:
+        """
+        if n == 1:
+            return "1"
+        else:
+            str_num = "1"
+            for i in range(n-1):
+                str_num = Solution.description(str_num)
+            return str_num
+
+    @classmethod
+    def description(cls, str_num: str) -> str:
+        """
+        方法用于：被 countAndSay 调用，描述num
+        """
+        val = str_num[0]
+        return_str = ""
+        j = 0
+        for i in range(len(str_num)):
+            if str_num[i] == val:
+                j += 1
+            else:
+                return_str = return_str + str(j) + val
+                val = str_num[i]
+                j = 1
+
+        # 解决 “11” 这种情况
+        return_str = return_str + str(j) + val
+        return return_str
