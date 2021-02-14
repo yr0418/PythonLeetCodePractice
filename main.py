@@ -4,5 +4,6 @@ from solution_middle import Solution as SolutionMiddle
 
 
 if __name__ == '__main__':
-    solution = SolutionMiddle()  # 调用类时，先进行类的初始化
-    print(solution.countAndSay(5))
+    solution = SolutionSimple()  # 调用类时，先进行类的初始化
+    s = "hello world    "
+    print(solution.lengthOfLastWord(s))

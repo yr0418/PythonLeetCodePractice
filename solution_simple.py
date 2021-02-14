@@ -458,3 +458,22 @@ class Solution:
         # 返回三个中的最大值
         return max(max_right, max_left, max_l + max_r)
 
+    def lengthOfLastWord(self, s: str) -> int:
+        """
+        :description: 最后一个单词的长度
+        :param s: str
+        :return: int
+        """
+        length, j = 0, -1
+        for i in range(len(s)):
+            if s[j] == " ":
+                if length == 0:
+                    j -= 1
+                else:
+                    return length
+            else:
+                length += 1
+                j -= 1
+        return length
+
+
