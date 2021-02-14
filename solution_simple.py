@@ -562,3 +562,48 @@ class Solution:
             x_0 = x_i
 
         return int(x_0)
+
+    def generate_1(self, numRows: int) -> List[List[int]]:
+        """
+        :description: 杨辉三角
+        :param numRows:
+        :return:
+        """
+        res_list = []
+        pre_list = []
+        for i in range(1, numRows+1):
+            pre_list = Solution.generate_list(pre_list, i)
+            res_list.append(pre_list)
+        return res_list
+
+    @classmethod
+    def generate_list(cls, pre_list: List[int], length: int) -> List[int]:
+        res_list = []
+        if length == 1:
+            res_list = [1]
+        elif length == 2:
+            res_list = [1, 1]
+        else:
+            res_list = [1, 1]
+            for i in range(1, length-1):
+                num = pre_list[i-1] + pre_list[i]
+                res_list.insert(i, num)
+        return res_list
+
+    def generate_2(self, numRows: int) -> List[List[int]]:
+        """
+        :description: 杨辉三角
+        :param numRows:
+        :return:
+        """
+        ret = list()
+        for i in range(numRows):
+            row = list()
+            for j in range(0, i + 1):
+                if j == 0 or j == i:
+                    row.append(1)
+                else:
+                    row.append(ret[i - 1][j] + ret[i - 1][j - 1])
+            ret.append(row)
+        return ret
+
