@@ -1,5 +1,8 @@
-from solution import Solution
+from solution_simple import Solution as SolutionSimple
+from solution_middle import Solution as SolutionMiddle
+# 利用 as 调用两个同名的类，解决冲突
+
 
 if __name__ == '__main__':
-    solution = Solution()  # 调用类时，先进行类的初始化
+    solution = SolutionMiddle()  # 调用类时，先进行类的初始化
     print(solution.countAndSay(5))

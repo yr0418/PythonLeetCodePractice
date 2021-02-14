@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# @File : solution.py
-# @Description：算法
+# @File : solution_simple.py
+# @Description：简单算法
 # @Author : 杨睿
 # @Time : 2021-01-14 23:21
 from typing import *
