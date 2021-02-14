@@ -5,6 +5,7 @@
 # @Time : 2021-01-14 23:21
 from typing import *
 from utils.ListNode import ListNode
+import math
 
 
 class Solution:
@@ -518,3 +519,46 @@ class Solution:
             res = '1'+res
         return res
 
+    def mySqrt_1(self, x: int) -> int:
+        """
+        :description: 求 x 的平方根，数学公式
+        :param x:
+        :return:
+        """
+        if x == 0:
+            return 0
+        ans = int(math.exp(0.5 * math.log(x)))
+        return ans + 1 if (ans + 1) ** 2 <= x else ans
+
+    def mySqrt_2(self, x: int) -> int:
+        """
+        :description: 求 x 的平方根，二分查找
+        :param x:
+        :return:
+        """
+        l, r, ans = 0, x, -1
+        while l <= r:
+            mid = (l+r) // 2
+            if mid * mid <= x:
+                ans = mid
+                l = mid + 1
+            else:
+                r = mid-1
+        return ans
+
+    def mySqrt_3(self, x: int) -> int:
+        """
+        :description: 求 x 的平方根，牛顿迭代
+        :param x:
+        :return:
+        """
+        if x == 0:
+            return 0
+        c, x_0 = float(x), float(x)
+        while True:
+            x_i = 0.5 * (x_0 + c / x_0)
+            if abs(x_0 - x_i) < 1e-7:
+                break
+            x_0 = x_i
+
+        return int(x_0)
