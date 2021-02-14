@@ -492,3 +492,29 @@ class Solution:
                     digits.insert(0, 1)
         return digits
 
+    def addBinary(self, a: str, b: str) -> str:
+        """
+        :description: 计算两个二进制数的和
+        :param a:
+        :param b:
+        :return:
+        """
+        # 1. 补齐两个字符串，使得两个字符串一样长
+        if len(a) < len(b):
+            a = '0'*(len(b)-len(a))+a
+        else:
+            b = '0'*(len(a)-len(b))+b
+        # carry 记录 是否进位，res 记录 返回的字符串
+        carry = 0
+        res = ''
+        for i in range(len(a)-1, -1, -1):
+            if int(a[i])+int(b[i])+carry >= 2:
+                res = str(int(a[i])+int(b[i])+carry-2)+res
+                carry = 1
+            else:
+                res = str(int(a[i])+int(b[i])+carry)+res
+                carry = 0
+        if carry == 1:
+            res = '1'+res
+        return res
+
