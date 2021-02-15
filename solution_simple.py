@@ -607,3 +607,35 @@ class Solution:
             ret.append(row)
         return ret
 
+    def getRow_1(self, rowIndex: int) -> List[int]:
+        """
+        :description: 杨辉三角，获取指定行
+        :param rowIndex: int
+        :return: list[int]
+        """
+        pre_list = []
+        for i in range(rowIndex):
+            res_list = list()
+            for j in range(0, i+1):
+                if j == 0 or j == i:
+                    res_list.append(1)
+                else:
+                    res_list.append(pre_list[j-1] + pre_list[j])
+            pre_list = res_list
+        return pre_list
+
+    def getRow_2(self, rowIndex: int) -> List[int]:
+        """
+        :description: 杨辉三角，获取指定行
+        :param rowIndex: int
+        :return: list[int]
+        """
+        res_list = [1] * (rowIndex+1)
+        for i in range(2, rowIndex+1):
+            for j in range(i-1, 0, -1):
+                res_list[j] = res_list[j] + res_list[j-1]
+        return res_list
+            
+
+    
+
