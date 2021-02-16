@@ -5,5 +5,5 @@ from solution_middle import Solution as SolutionMiddle
 
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
-    s = "A man, a plan, a canal: Panama"
-    print(solution.isPalindrome(s))
+    s = [1,2,1,2,4]
+    print(solution.singleNumber(s))

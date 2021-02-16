@@ -3,6 +3,7 @@
 # @Description：简单算法
 # @Author : 杨睿
 # @Time : 2021-01-14 23:21
+from functools import reduce
 from typing import *
 from utils.ListNode import ListNode
 import math
@@ -704,6 +705,17 @@ class Solution:
                 i += 1
                 j -= 1
         return True
+
+    def singleNumber(self, nums: List[int]) -> int:
+        """
+        :description: 只出现一次的数字，位运算
+        :param nums:
+        :return:
+        """
+        # lambda：创建匿名函数
+        # X ^ y : 实现 异或运算
+        # reduce: 库函数
+        return reduce(lambda x, y: x ^ y, nums)
 
 
 

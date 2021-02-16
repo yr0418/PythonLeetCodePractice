@@ -2012,7 +2012,7 @@ f(10, 20, 30, 40, 50, f=60)           # e 必须使用关键字参数的形式
 
 ---
 
----
+
 
 ## 7.3  匿名函数
 
@@ -2021,9 +2021,9 @@ python 使用 lambda 来创建匿名函数。
 所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数。
 
 - lambda 只是一个表达式，函数体比 def 简单很多。
-- lambda的主体是一个表达式，而不是一个代码块。仅仅能在lambda表达式中封装有限的逻辑进去。
+- lambda 的主体是一个表达式，而不是一个代码块。仅仅能在lambda表达式中封装有限的逻辑进去。
 - lambda 函数拥有自己的命名空间，且不能访问自己参数列表之外或全局命名空间里的参数。
-- 虽然lambda函数看起来只能写一行，却不等同于C或C++的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
+- 虽然 lambda 函数看起来只能写一行，却不等同于C或C++的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
 
 ### 7.3.1  匿名函数示例
 
@@ -2043,10 +2043,7 @@ sum = lambda arg1, arg2: arg1 + arg2
 
 # 调用sum函数
 print("相加后的值为 : ", sum(10, 20))
-print("相加后的值为 : ", sum(20, 20))
 ```
-
----
 
 ---
 
@@ -2068,7 +2065,9 @@ print ("函数外 : ", total)
 
 ---
 
-## 7.5 range函数
+
+
+## 7.5 range 函数
 
 Python3 range() 函数返回的是一个可迭代对象（类型是对象），而不是列表类型， 所以打印的时候不会打印列表。
 
@@ -2117,9 +2116,56 @@ for i in range(len(digits)-1, -1, -1):
 """
 ```
 
+---
 
 
 
+## 7.6 reduce 函数
+
+**reduce()** 函数会对参数序列中元素进行累积。
+
+函数将一个数据集合（链表，元组等）中的所有数据进行下列操作：用传给 reduce 中的函数 function（有两个参数）先对集合中的第 1、2 个元素进行操作，得到的结果再与第三个数据用 function 函数运算，最后得到一个结果。
+
+> **注意：**Python3.x reduce() 已经被移到 functools 模块里，如果我们要使用，需要引入 functools 模块来调用 reduce() 函数：
+>
+> ```python
+> from functools import reduce
+> ```
+
+
+
+### 7.6.1 函数语法
+
+reduce() 函数语法：
+
+```python
+reduce(function, iterable[, initializer])
+```
+
+**参数：**
+
+- function -- 函数，有两个参数
+- iterable -- 可迭代对象
+- initializer -- 可选，初始参数
+
+**返回值：**
+
+返回函数计算结果。
+
+
+
+### 7.6.2 函数实例
+
+```python
+from functools import reduce
+
+def add(x, y) :            # 两数相加
+    return x + y
+sum1 = reduce(add, [1,2,3,4,5])   # 计算列表和：1+2+3+4+5
+sum2 = reduce(lambda x, y: x+y, [1,2,3,4,5])  # 使用 lambda 匿名函数
+print(sum1)  # 输出：15
+print(sum2)  # 输出：15
+```
 
 
 
