@@ -5,5 +5,5 @@ from solution_middle import Solution as SolutionMiddle
 
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
-    prices = [1,2,3,4,5]
-    print(solution.maxProfit(prices))
+    s = "A man, a plan, a canal: Panama"
+    print(solution.isPalindrome(s))

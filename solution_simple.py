@@ -683,5 +683,28 @@ class Solution:
                 profit += tmp
         return profit
 
+    def isPalindrome(self, s: str) -> bool:
+        """
+        :description: 判断是否为 回文串
+        :param s:
+        :return:
+        """
+        i, j = 0, len(s)-1
+        while i < j:
+            # isalnum：库函数。判断传入的字符是否为字母或数字
+            # 加入 i<j 的判定条件，防止出现 i或者j 溢出的情况
+            # 例如：s = "    "
+            while i < j and not s[i].isalnum():
+                i += 1
+            while i < j and not s[j].isalnum():
+                j -= 1
+            if i < j:
+                if s[i].lower() != s[j].lower():
+                    return False
+                i += 1
+                j -= 1
+        return True
+
+
 
 
