@@ -636,7 +636,7 @@ class Solution:
                 res_list[j] = res_list[j] + res_list[j-1]
         return res_list
             
-    def maxProfit(self, prices: List[int]) -> int:
+    def maxProfit_1(self, prices: List[int]) -> int:
         """
         :description: 买卖股票的最佳时机
         :param prices:
@@ -650,4 +650,38 @@ class Solution:
             else:
                 i = j
         return profit
+
+    def maxProfit(self, prices: List[int]) -> int:
+        """
+        :description: 买卖股票的最佳时机，进阶
+        :param prices:
+        :return:
+        """
+        if len(prices) == 0:
+            return 0
+        else:
+            i, profit = 0, 0
+            prices.append(0)
+            for j in range(len(prices)):
+                if prices[j] > prices[i] and prices[j] > prices[j+1]:
+                    profit = profit + prices[j] - prices[i]
+                    i = j+1
+                if prices[j] < prices[i]:
+                    i = j
+            return profit
+
+    def maxProfit_2(self, prices: List[int]) -> int:
+        """
+        :description: 买卖股票的最佳时机，进阶，贪心算法
+        :param prices:
+        :return:
+        """
+        profit = 0
+        for i in range(1, len(prices)):
+            tmp = prices[i] - prices[i - 1]
+            if tmp > 0:
+                profit += tmp
+        return profit
+
+
 
