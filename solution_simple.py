@@ -717,6 +717,19 @@ class Solution:
         # reduce: 库函数
         return reduce(lambda x, y: x ^ y, nums)
 
+    def convertToTitle(self, n: int) -> str:
+        """
+        :description: Excel表，列名称
+        :param n:
+        :return:
+        """
+        s = ""
+        while n > 0:
+            n -= 1
+            a, b = n // 26, n % 26
+            s = s + chr(b+65)
+            n = a
+        return s[::-1]
 
 
 
