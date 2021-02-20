@@ -731,5 +731,17 @@ class Solution:
             n = a
         return s[::-1]
 
+    def trailingZeroes(self, n: int) -> int:
+        """
+        :description: 阶乘后的 0
+        :param n:
+        :return:
+        """
+        zero_count = 0
+        while n > 0:
+            n //= 5
+            zero_count += n
+        return zero_count
+
 
 
