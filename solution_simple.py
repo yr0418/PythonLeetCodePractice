@@ -780,3 +780,66 @@ class Solution:
             count += 1
             n &= (n-1)
         return count
+
+    def isHappy_1(self, n: int) -> bool:
+        """
+        :description: 快乐数，哈希集合检测循环
+        :param n:
+        :return:
+        """
+        res = 0
+        seen = set()
+        while 1 <= n < (2 ** 32)-1:
+            res = 0
+            while n != 0:
+                n, digit = divmod(n, 10)
+                res += digit**2
+                # res += (n % 10)**2
+                # n = (n // 10)
+            n = res
+            if n == 1:
+                return True
+            elif n != 1 and n not in seen:
+                seen.add(n)
+            else:
+                return False
+
+    def isHappy_2(self, n: int) -> bool:
+        """
+        :description: 快乐数，哈希集合检测循环，内置def
+        :param n:
+        :return:
+        """
+        def get_next(num):
+            total_sum = 0
+            while num > 0:
+                num, digit = divmod(num, 10)
+                total_sum += digit ** 2
+            return total_sum
+
+        seen = set()
+        while n != 1 and n not in seen:
+            seen.add(n)
+            n = get_next(n)
+
+        return n == 1
+
+    def isHappy_3(self, n: int) -> bool:
+        """
+        :description: 快乐数，快慢指针
+        :param n:
+        :return:
+        """
+        def get_next(number):
+            total_sum = 0
+            while number > 0:
+                number, digit = divmod(number, 10)
+                total_sum += digit ** 2
+            return total_sum
+
+        slow_runner = n
+        fast_runner = get_next(n)
+        while fast_runner != 1 and slow_runner != fast_runner:
+            slow_runner = get_next(slow_runner)
+            fast_runner = get_next(get_next(fast_runner))
+        return fast_runner == 1
