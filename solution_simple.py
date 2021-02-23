@@ -743,5 +743,15 @@ class Solution:
             zero_count += n
         return zero_count
 
-
-
+    def reverseBits(self, n: int) -> int:
+        """
+        :description：颠倒二进制位
+        :param n:
+        :return:
+        """
+        ret, power = 0, 31
+        while n:
+            ret += (n & 1) << power
+            n = n >> 1
+            power -= 1
+        return ret
