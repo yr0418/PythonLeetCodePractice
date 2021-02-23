@@ -5,7 +5,6 @@
 # @Time : 2021-01-14 23:21
 from functools import reduce
 from typing import *
-from utils.ListNode import ListNode
 import math
 
 
@@ -843,3 +842,41 @@ class Solution:
             slow_runner = get_next(slow_runner)
             fast_runner = get_next(get_next(fast_runner))
         return fast_runner == 1
+
+    def countPrimes_1(self, n: int) -> int:
+        """
+        :description: 计数质数，暴力破解
+        :param n:
+        :return:
+        """
+        def is_prime(num: int) -> bool:
+            i = 2
+            while i**2 <= num:
+                if num % i == 0:
+                    return False
+                i += 1
+            return True
+
+        ans, i = 0, 2
+        while i < n:
+            ans += is_prime(i)
+            i += 1
+        return ans
+
+    def countPrimes_2(self, n: int) -> int:
+        """
+        :description: 计数质数，埃氏筛
+        :param n:
+        :return:
+        """
+        # 定义数组标记是否是质数
+        is_prime = [1] * n
+        count = 0
+        for i in range(2, n):
+            # 将质数的倍数标记为合数
+            if is_prime[i]:
+                count += 1
+                # 从 i*i 开始标记
+                for j in range(i * i, n, i):
+                    is_prime[j] = 0
+        return count
