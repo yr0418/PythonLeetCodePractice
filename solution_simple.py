@@ -755,3 +755,28 @@ class Solution:
             n = n >> 1
             power -= 1
         return ret
+
+    def hammingWeight_1(self, n: int) -> int:
+        """
+        :description: 位1 的个数
+        :param n:
+        :return:
+        """
+        count = 0
+        while n:
+            if (n & 1) == 1:
+                count += 1
+            n = n >> 1
+        return count
+
+    def hammingWeight_2(self, n: int) -> int:
+        """
+        :description: 位1 的个数
+        :param n:
+        :return:
+        """
+        count = 0
+        while n:
+            count += 1
+            n &= (n-1)
+        return count
