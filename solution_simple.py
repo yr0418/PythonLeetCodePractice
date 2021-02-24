@@ -911,3 +911,20 @@ class Solution:
                 seen.add(num)
         return False
 
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        """
+        :description: 存在重复元素||
+        :param nums:
+        :param k:
+        :return:
+        """
+        seen = dict()
+        for i, num in enumerate(nums):
+            if seen.get(num) is not None:
+                if i-seen.get(num) <= k:
+                    return True
+                else:
+                    seen[num] = i
+            else:
+                seen[num] = i
+        return False
