@@ -880,3 +880,19 @@ class Solution:
                 for j in range(i * i, n, i):
                     is_prime[j] = 0
         return count
+
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        """
+        :description: 同构字符串，哈希表实现双射
+        :param s:
+        :param t:
+        :return:
+        """
+        hashmap1 = {}
+        hashmap2 = {}
+        for c1, c2 in zip(s, t):
+            if hashmap1.get(c1, c2) != c2 or hashmap2.get(c2, c1) != c1:
+                return False
+            hashmap1[c1] = c2
+            hashmap2[c2] = c1
+        return True
