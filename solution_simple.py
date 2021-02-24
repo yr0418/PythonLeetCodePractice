@@ -896,3 +896,18 @@ class Solution:
             hashmap1[c1] = c2
             hashmap2[c2] = c1
         return True
+
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        """
+        :description: 存在重复的元素
+        :param nums:
+        :return:
+        """
+        seen = set()
+        for num in nums:
+            if num in seen:
+                return True
+            else:
+                seen.add(num)
+        return False
+
