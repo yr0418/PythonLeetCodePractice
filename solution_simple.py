@@ -960,4 +960,36 @@ class Solution:
             ranges.append(range_str)
             return ranges
 
+    def isPowerOfTwo_1(self, n: int) -> bool:
+        """
+        :description: 2的幂，暴力破解
+        :param n:
+        :return:
+        """
+        if n <= 0:
+            return False
+        while n % 2 == 0:
+            n /= 2
+        return n == 1
+
+    def isPowerOfTwo_2(self, n: int) -> bool:
+        """
+        :description: 2的幂，位运算，获取二进制中最右边的 1
+        :param n:
+        :return:
+        """
+        if n <= 0:
+            return False
+        return n & (-n) == n
+
+    def isPowerOfTwo_3(self, n: int) -> bool:
+        """
+        :description: 2的幂，位运算，去除二进制中最右边的 1
+        :param n:
+        :return:
+        """
+        if n <= 0:
+            return False
+        return n & (n-1) == 0
+
 
