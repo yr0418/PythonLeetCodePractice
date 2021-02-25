@@ -928,3 +928,36 @@ class Solution:
             else:
                 seen[num] = i
         return False
+
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        """
+        :description: 汇总区间
+        :param nums:
+        :return:
+        """
+        if nums is None:
+            return []
+        elif len(nums) == 1:
+            return [str(nums[0])]
+        else:
+            i, j, length, range_str = 0, 1, len(nums), ""
+            ranges = list()
+            while j < length:
+                if nums[j] - nums[j-1] == 1:
+                    j += 1
+                else:
+                    if i == j-1:
+                        range_str = str(nums[i])
+                    else:
+                        range_str = str(nums[i]) + "->" + str(nums[j-1])
+                    ranges.append(range_str)
+                    i = j
+                    j += 1
+            if i != j-1:
+                range_str = str(nums[i]) + "->" + str(nums[j - 1])
+            else:
+                range_str = str(nums[i])
+            ranges.append(range_str)
+            return ranges
+
+

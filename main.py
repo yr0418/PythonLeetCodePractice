@@ -5,6 +5,6 @@ from solution_middle import Solution as SolutionMiddle
 
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
-    s = [1, 0, 1, 1]
+    s = [0,2,3,4,6,8,10]
     t = "abbads"
-    print(solution.containsNearbyDuplicate(s, 1))
+    print(solution.summaryRanges(s))
