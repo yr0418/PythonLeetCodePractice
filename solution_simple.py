@@ -992,4 +992,34 @@ class Solution:
             return False
         return n & (n-1) == 0
 
+    def isAnagram_1(self, s: str, t: str) -> bool:
+        """
+        :description: 字母异位词，排序
+        :param s:
+        :param t:
+        :return:
+        """
+        if len(s) != len(t):
+            return False
+        s = sorted(s)
+        t = sorted(t)
+        return s == t
+
+    def isAnagram_2(self, s: str, t: str) -> bool:
+        """
+        :description: 字母异位词，哈希
+        :param s:
+        :param t:
+        :return:
+        """
+        if len(s) != len(t):
+            return False
+        count = [0]*26  # 生成一个长度为 26 的列表
+        for i in s:
+            count[ord(i) - ord("a")] += 1  # ord() 函数可将 字符 转成 10进制，方便进行 ASCII码 的计算
+        for i in t:
+            count[ord(i) - ord("a")] -= 1
+            if count[ord(i) - ord("a")] < 0:
+                return False
+        return True
 
