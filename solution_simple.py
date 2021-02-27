@@ -1062,3 +1062,26 @@ class Solution:
             num = num // 5
         return num == 1
 
+    def missingNumber_1(self, nums: List[int]) -> int:
+        """
+        :description: 丢失的数字，位运算
+        :param nums:
+        :return:
+        """
+        missing = len(nums)
+        for i, num in enumerate(nums):
+            missing ^= (i ^ num)
+        return missing
+
+    def missingNumber_2(self, nums: List[int]) -> int:
+        """
+        :description: 丢失的数字，数学公式
+        :param nums:
+        :return:
+        """
+        missing = len(nums)
+        for i, num in enumerate(nums):
+            missing += i - num
+        return missing
+
+
