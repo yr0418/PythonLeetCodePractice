@@ -1023,3 +1023,25 @@ class Solution:
                 return False
         return True
 
+    def addDigits_1(self, num: int) -> int:
+        """
+        :description: 各位相加，循环
+        :param num:
+        :return:
+        """
+        digit = 0
+        while num > 9:
+            digit = num % 10
+            num //= 10
+            num += digit
+        return num
+
+    def addDigits_2(self, num: int) -> int:
+        """
+        :description: 各位相加，数学定义
+        :param num:
+        :return:
+        """
+        if num == 0:
+            return 0
+        return (num-1) % 9 + 1
