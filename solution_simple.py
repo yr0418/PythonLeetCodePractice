@@ -1098,4 +1098,30 @@ class Solution:
                 left += 1
             right += 1
 
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        """
+        :description: 单词规律
+        :param pattern:
+        :param s:
+        :return:
+        """
+        params = list()
+        param = ""
+        for i in s:
+            if i != " ":
+                param += i
+            else:
+                params.append(param)
+                param = ""
+        params.append(param)
+        if len(params) != len(pattern):
+            return False
+        dict_1 = {}
+        dict_2 = {}
+        for x, y in zip(pattern, params):
+            if dict_1.get(x, y) != y or dict_2.get(y, x) != x:
+                return False
+            dict_1[x] = y
+            dict_2[y] = x
+        return True
 
