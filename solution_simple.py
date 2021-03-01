@@ -1084,6 +1084,18 @@ class Solution:
             missing += i - num
         return missing
 
-
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        :description: 移动 0
+        :param nums:
+        :return:
+        """
+        n = len(nums)
+        left, right = 0, 0
+        while right < n:
+            if nums[right] != 0:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+            right += 1
 
 
