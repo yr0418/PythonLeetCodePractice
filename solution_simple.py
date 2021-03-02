@@ -1146,3 +1146,27 @@ class Solution:
             s[i], s[j] = s[j], s[i]
             i += 1
             j -= 1
+
+    def reverseVowels(self, s: str) -> str:
+        """
+        :description: 反转元音字母
+        :param s:
+        :return:
+        """
+        vowels = ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+        left, right, list_s = 0, len(s)-1, list(s)
+        while left < right:
+            while list_s[left] not in vowels and left < right:
+                left += 1
+            while list_s[right] not in vowels and left < right:
+                right -= 1
+            if left < right:
+                char = list_s[left]
+                list_s[left] = list_s[right]
+                list_s[right] = char
+                left += 1
+                right -= 1
+            else:
+                break
+        return "".join(list_s)
+
