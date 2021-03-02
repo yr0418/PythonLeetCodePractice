@@ -5,6 +5,7 @@ from solution_middle import Solution as SolutionMiddle
 
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
-    s = ".,"
+    nums1 = [1,2,2,1]
+    nums2 = [2,2]
 
-    print(solution.reverseVowels(s))
+    print(solution.intersection(nums1, nums2))

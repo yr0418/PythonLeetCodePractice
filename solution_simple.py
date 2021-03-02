@@ -1170,3 +1170,18 @@ class Solution:
                 break
         return "".join(list_s)
 
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        """
+        :description: 两个数组的交集
+        :param nums1:
+        :param nums2:
+        :return:
+        """
+        set_1 = set(nums2)
+        set_2 = set()
+        for i in nums1:
+            if i in set_1 and i not in set_2:
+                set_2.add(i)
+        return list(set_2)
+
+
