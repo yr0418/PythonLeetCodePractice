@@ -1125,3 +1125,13 @@ class Solution:
             dict_2[y] = x
         return True
 
+    def isPowerOfThree(self, n: int) -> bool:
+        """
+        :description: 3的幂
+        :param n:
+        :return:
+        """
+        if n <= 0:
+            return False
+        return (math.log10(n) / math.log10(3)) % 1 == 0
+
