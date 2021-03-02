@@ -1276,6 +1276,26 @@ class Solution:
             b = carry % MASK
         return a if a <= MAX_INT else ~((a % MIN_INT) ^ MAX_INT)
 
+    def guessNumber(self, n: int) -> int:
+        """
+        :description: 猜数字游戏，二分查找
+        :param n:
+        :return:
+        """
+        def guess(num: int):
+            pass
+
+        left, right = 1, n
+        while left < right:
+            mid = (left + right) >> 1
+            if guess(mid) == -1:
+                right = mid
+            elif guess(mid) == 1:
+                left = mid+1
+            else:
+                return mid
+        return left
+
 
 
 
