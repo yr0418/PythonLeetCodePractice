@@ -1135,3 +1135,14 @@ class Solution:
             return False
         return (math.log10(n) / math.log10(3)) % 1 == 0
 
+    def reverseString(self, s: List[str]) -> None:
+        """
+        :description: 反转字符串
+        :param s:
+        :return:
+        """
+        i, j = 0, len(s)-1
+        while i < j:
+            s[i], s[j] = s[j], s[i]
+            i += 1
+            j -= 1
