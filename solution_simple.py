@@ -1230,5 +1230,34 @@ class Solution:
 
         return intersection
 
+    def isPerfectSquare_1(self, num: int) -> bool:
+        """
+        :description: 有效的完全平方数，数学公式
+        :param num:
+        :return:
+        """
+        ans = int(math.exp(0.5 * math.log(num)))
+        return ans**2 == num or (ans+1)**2 == num
+
+    def isPerfectSquare_2(self, num: int) -> bool:
+        """
+        :description: 有效的完全平方数，二分查找
+        :param num:
+        :return:
+        """
+        left, right = 1, (num//2 + 1)
+        while left < right:
+            mid = left + (right-left) // 2
+            if mid**2 > num:
+                right = mid
+            elif mid**2 < num:
+                left = mid + 1
+            else:
+                return True
+        return left**2 == num
+
+
+
+
 
 
