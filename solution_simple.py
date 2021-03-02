@@ -3,6 +3,7 @@
 # @Description：简单算法
 # @Author : 杨睿
 # @Time : 2021-01-14 23:21
+import collections
 from functools import reduce
 from typing import *
 import math
@@ -1183,5 +1184,51 @@ class Solution:
             if i in set_1 and i not in set_2:
                 set_2.add(i)
         return list(set_2)
+
+    def intersect_1(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        """
+        :description: 求两个数组的交集 2，哈希表
+        :param nums1:
+        :param nums2:
+        :return:
+        """
+        if len(nums1) > len(nums2):
+            return self.intersect(nums2, nums1)  # python 递归
+
+        dict_1 = collections.Counter(nums1)  # collections.Counter() 计数器
+        list_1 = list()
+        for num in nums2:
+            if dict_1[num] != 0:
+                list_1.append(num)
+                dict_1[num] -= 1
+                if dict_1[num] == 0:
+                    dict_1.pop(num)
+
+        return list_1
+
+    def intersect_2(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        """
+        :description: 求两个数组的交集 2，排序+双指针
+        :param nums1:
+        :param nums2:
+        :return:
+        """
+        nums1.sort()
+        nums2.sort()
+        intersection = list()
+        len_1, len_2 = len(nums1), len(nums2)
+        index_1 = index_2 = 0
+        while index_1 < len_1 and index_2 < len_2:
+            if nums1[index_1] < nums2[index_2]:
+                index_1 += 1
+            elif nums1[index_1] > nums2[index_2]:
+                index_2 += 1
+            else:
+                intersection.append(nums1[index_1])
+                index_2 += 1
+                index_1 += 1
+
+        return intersection
+
 
 
