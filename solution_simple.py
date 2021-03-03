@@ -1372,6 +1372,22 @@ class Solution:
             res ^= ord(i)
         return chr(res)
 
+    def isSubsequence(self, s: str, t: str) -> bool:
+        """
+        :description: 判断子序列，双指针
+        :param s:
+        :param t:
+        :return:
+        """
+        i, j, len_s, len_t = 0, 0, len(s), len(t)
+        while i < len_s and j < len_t:
+            if t[j] == s[i]:
+                j += 1
+                i += 1
+            else:
+                j += 1
+        return i == len_s
+
 
 
 
