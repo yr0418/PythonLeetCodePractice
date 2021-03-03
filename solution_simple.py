@@ -1342,6 +1342,35 @@ class Solution:
                 return dict_1[char]
         return -1
 
+    def findTheDifference(self, s: str, t: str) -> str:
+        """
+        :description: 找不同，哈希表
+        :param s:
+        :param t:
+        :return:
+        """
+        dict_s = collections.Counter(s)
+        for char in t:
+            if char not in dict_s:
+                return char
+            else:
+                dict_s[char] -= 1
+                if dict_s[char] == 0:
+                    dict_s.pop(char)
+
+    def findTheDifference_2(self, s: str, t: str) -> str:
+        """
+        :description: 找不同，位运算
+        :param s:
+        :param t:
+        :return:
+        """
+        res = 0
+        for i in s:
+            res ^= ord(i)
+        for i in t:
+            res ^= ord(i)
+        return chr(res)
 
 
 
