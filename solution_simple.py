@@ -1313,6 +1313,36 @@ class Solution:
                 return False
         return True
 
+    def firstUniqChar_1(self, s: str) -> int:
+        """
+        :description: 字符串中第一个唯一字符，两次遍历，哈希表
+        :param s:
+        :return:
+        """
+        dict_1 = collections.Counter(s)
+        for i, char in enumerate(s):
+            if dict_1[char] == 1:
+                return i
+        return -1
+        
+    def firstUniqChar_2(self, s: str) -> int:
+        """
+        :description: 字符串中第一个唯一字符，两次遍历，哈希表
+        :param s:
+        :return:
+        """
+        dict_1 = dict()
+        for i, char in enumerate(s):
+            if char not in dict_1:
+                dict_1[char] = i
+            else:
+                dict_1[char] = -1
+        for char in dict_1:
+            if dict_1[char] != -1:
+                return dict_1[char]
+        return -1
+
+
 
 
 
