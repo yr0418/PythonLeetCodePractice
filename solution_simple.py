@@ -1296,7 +1296,22 @@ class Solution:
                 return mid
         return left
 
-
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        """
+        :description: 赎金信
+        :param ransomNote:
+        :param magazine:
+        :return:
+        """
+        magazine_dict = collections.Counter(magazine)
+        for i in ransomNote:
+            if i in magazine_dict:
+                magazine_dict[i] -= 1
+                if magazine_dict[i] < 0:
+                    return False
+            else:
+                return False
+        return True
 
 
 
