@@ -1388,6 +1388,21 @@ class Solution:
                 j += 1
         return i == len_s
 
+    def toHex(self, num: int) -> str:
+        """
+        :description: 将一个整数转换为 16进制
+        :param num:
+        :return:
+        """
+        num &= 0xFFFFFFFF  # 数字在计算机中都是以其补码的形式进行存储的，进行位运算也是其补码进行位运算
+        s = "0123456789abcdef"
+        res = ""
+        mask = 0b1111
+        while num > 0:
+            res += s[num & mask]  # 获取 num 低4位 的 值
+            num >>= 4
+        return res[::-1] if res else "0"
+
 
 
 
