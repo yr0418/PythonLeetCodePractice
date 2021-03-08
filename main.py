@@ -5,9 +5,5 @@ from solution_middle import Solution as SolutionMiddle
 
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
-    # print(solution.toHex(12))
-    num = -9
-    print(bin(num))
-    # print(bin(0xff))
-    num &= 0b11111111
-    print(bin(num))
+    num = ""
+    print(solution.longestPalindrome(num))

@@ -1403,7 +1403,21 @@ class Solution:
             num >>= 4
         return res[::-1] if res else "0"
 
-
-
+    def longestPalindrome(self, s: str) -> int:
+        """
+        :description: 最长回文串
+        :param s:
+        :return:
+        """
+        # 哈希表记录各个字符出现的次数
+        dict_str = collections.Counter(s)
+        ans, count = 0, 0  # ans 表示返回值，count标记是否出现 奇次数的字符
+        for key in dict_str:
+            if dict_str[key] % 2 == 0:
+                ans += dict_str[key]  # 字符出现次数为偶数
+            else:
+                ans += (dict_str[key]-1)  # 字符出现的次数为奇数
+                count = 1  # 标记出现过奇数
+        return ans + count
 
 
