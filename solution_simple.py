@@ -1465,5 +1465,29 @@ class Solution:
                 third = num
         return first if math.isinf(third) else third
 
+    def addStrings(self, num1: str, num2: str) -> str:
+        """
+        :description: 字符串相加
+        :param num1:
+        :param num2:
+        :return:
+        """
+        i, j, add, res = len(num1)-1, len(num2)-1, 0, ""
+        while i >= 0 or j >= 0:
+            # 补0 操作，短的字符串遍历结束后，在高位进行补0，使得遍历正常进行
+            n1 = int(num1[i]) if i >= 0 else 0
+            n2 = int(num2[j]) if j >= 0 else 0
+
+            tmp = n1 + n2 + add
+            add = tmp // 10
+            res = str(tmp % 10) + res
+            i, j = i-1, j-1
+        return "1" + res if add == 1 else res
+    
+            
+            
+
+            
+
 
 
