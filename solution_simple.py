@@ -1446,6 +1446,24 @@ class Solution:
             ans_list.append(ans_str)
         return ans_list
 
+    def thirdMax(self, nums: List[int]) -> int:
+        """
+        :description: 第三大的数
+        :param nums:
+        :return:
+        """
+        first = second = third = float('-inf')
+        for num in nums:
+            if num > first:
+                third = second
+                second = first
+                first = num
+            elif num > second and num != first:
+                third = second
+                second = num
+            elif num > third and num != second and num != first:
+                third = num
+        return first if math.isinf(third) else third
 
 
 
