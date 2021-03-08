@@ -1420,4 +1420,32 @@ class Solution:
                 count = 1  # 标记出现过奇数
         return ans + count
 
+    def fizzBuzz(self, n: int) -> List[str]:
+        """
+        :description: Fizz Buzz，字符串拼接
+        :param n:
+        :return:
+        """
+        ans_list = list()
+        for i in range(1, n+1):
+            ans_str = ""  # 映射字符串
+            divisible_by_3 = (i % 3 == 0)
+            divisible_by_5 = (i % 5 == 0)
+            """
+            用两个 if 条件，实现 3个 判定条件
+            （1）i 只是 3 的倍数，ans = "", ans += "Fizz"
+            （2）i 只是 5 的倍数，ans = "", ans += "Buzz"
+            （3）i 同时是 3 和 5 的倍数，ans = "Fizz", ans += "Buzz"
+            """
+            if divisible_by_3:
+                ans_str += "Fizz"
+            if divisible_by_5:
+                ans_str += "Buzz"
+            if not ans_str:
+                ans_str = str(i)
+            ans_list.append(ans_str)
+        return ans_list
+
+
+
 
