@@ -1495,7 +1495,32 @@ class Solution:
             if (i == 0 or s[i-1] == " ") and s[i] != " ":
                 count += 1
         return count
+
+    def arrangeCoins(self, n: int) -> int:
+        """
+        :description: 硬币排列
+        :param n:
+        :return:
+        """
+        if n == 0:
+            return 0
         
+        left, right = 0, n
+        while left < right:
+            mid = left + (right-left) // 2
+            """
+            注意：mid 的正确条件是：(1+mid)*mid <= 2n < (2+mid)*(mid+1)
+            因此与之相反的条件是：(1+mid)*mid > 2n 或者 (2+mid)*(mid+1) <= 2n
+            """
+            if (1+mid)*mid > 2*n:
+                right = mid - 1
+            elif (2+mid)*(mid+1) <= 2*n:
+                left = mid + 1
+            else:
+                return mid
+        return left
+
+
 
     
             

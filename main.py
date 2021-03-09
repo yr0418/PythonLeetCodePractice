@@ -5,5 +5,5 @@ from solution_middle import Solution as SolutionMiddle
 
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
-    num = "Hello, my name is John "
-    print(solution.countSegments(num))
+    num = 5
+    print(solution.arrangeCoins(num))
