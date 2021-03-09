@@ -1520,6 +1520,21 @@ class Solution:
                 return mid
         return left
 
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        """
+        :description: 找到数组中消失的数组，原地法
+        :param nums:
+        :return:
+        """
+        n = len(nums)
+        for num in nums:
+            x = (num-1) % n  # 找到数 x
+            nums[x] += n  # 修改索引为 x 的数的值，以此标记 数x 在数组中
+
+        ret = [i+1 for i, num in enumerate(nums) if num <= n]
+        return ret
+
+
 
 
     
