@@ -1483,6 +1483,20 @@ class Solution:
             res = str(tmp % 10) + res
             i, j = i-1, j-1
         return "1" + res if add == 1 else res
+
+    def countSegments(self, s: str) -> int:
+        """
+        :description: 字符串中的单词数
+        :param s:
+        :return:
+        """
+        count = 0
+        for i in range(len(s)):
+            if (i == 0 or s[i-1] == " ") and s[i] != " ":
+                count += 1
+        return count
+        
+
     
             
             
