@@ -1522,7 +1522,7 @@ class Solution:
 
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         """
-        :description: 找到数组中消失的数组，原地法
+        :description: 找到数组中消失的数字，原地法
         :param nums:
         :return:
         """
@@ -1534,8 +1534,31 @@ class Solution:
         ret = [i+1 for i, num in enumerate(nums) if num <= n]
         return ret
 
+    def minMoves_1(self, nums: List[int]) -> int:
+        """
+        :description: 最小操作次数使得数组元素相等，动态规划
+        :param nums:
+        :return:
+        """
+        list.sort(nums)
+        moves = 0
+        for i in range(1, len(nums)):
+            diff = (moves + nums[i]) - nums[i-1]
+            nums[i] += moves
+            moves += diff
+        return moves
 
-
+    def minMoves_2(self, nums: List[int]) -> int:
+        """
+        :description: 最小操作次数使得数组元素相等，数学法
+        :param nums:
+        :return:
+        """
+        min_num = min(nums)
+        moves = 0
+        for i in range(len(nums)):
+            moves += (nums[i] - min_num)
+        return moves
 
     
             
