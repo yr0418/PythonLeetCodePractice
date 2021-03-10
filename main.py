@@ -6,6 +6,6 @@ from solution_middle import Solution as SolutionMiddle
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
     num = 5
-    g = [1, 2, 3]
-    s = [1, 1]
-    print(solution.findContentChildren(g, s))
+    g = 1
+    s = 4
+    print(solution.hammingDistance(g, s))

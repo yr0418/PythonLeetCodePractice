@@ -1595,8 +1595,35 @@ class Solution:
 
         return False
 
+    def hammingDistance_1(self, x: int, y: int) -> int:
+        """
+        :description: 汉明距离
+        :param x:
+        :param y:
+        :return:
+        """
+        num = x ^ y
+        count = 0
+        while num:
+            if num & 1:
+                count += 1
+            num = num >> 1
 
-            
+        return count
 
+    def hammingDistance_2(self, x: int, y: int) -> int:
+        """
+        :description: 汉明距离，布赖恩·克尼根算法
+        :param x:
+        :param y:
+        :return:
+        """
+        num = x ^ y
+        count = 0
+        while num:
+            count += 1
+            num = num & (num-1)
+
+        return count
 
 
