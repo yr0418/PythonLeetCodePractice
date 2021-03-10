@@ -1560,8 +1560,28 @@ class Solution:
             moves += (nums[i] - min_num)
         return moves
 
-    
-            
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        """
+        :description: 分发饼干，排序+贪心
+        :param g:
+        :param s:
+        :return:
+        """
+        list.sort(g)
+        list.sort(s)
+        i, j, g_len, s_len = 0, 0, len(g), len(s)
+        count = 0
+        while i < g_len and j < s_len:
+            while g[i] > s[j] and j < s_len:
+                j += 1
+                if j == s_len:
+                    return count
+            count += 1
+            i += 1
+            j += 1
+        return count
+
+
             
 
             
