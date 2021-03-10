@@ -1626,4 +1626,47 @@ class Solution:
 
         return count
 
+    def islandPerimeter_1(self, grid: List[List[int]]) -> int:
+        """
+        :description: 岛屿周长，遍历4周
+        :param grid:
+        :return:
+        """
+        perimeter = 0
+        # 利用 dx，dy，这样在获取一个格子的四周的坐标时，比较方便，且能精简代码
+        dx = [0, 1, 0, -1]
+        dy = [1, 0, -1, 0]
+        n, m = len(grid), len(grid[0])
+        for i in range(0, n):
+            for j in range(0, m):
+                if grid[i][j] == 1:
+                    count = 0
+                    # 遍历该格子的四周
+                    for k in range(4):
+                        tx = i + dx[k]
+                        ty = j + dy[k]
+                        # 判定条件
+                        if tx < 0 or tx >= n or ty < 0 or ty >= m or grid[tx][ty] == 0:
+                            count += 1
+                    perimeter += count
 
+        return perimeter
+
+    def islandPerimeter_2(self, grid: List[List[int]]) -> int:
+        """
+        :description: 岛屿周长，容斥原理
+        :param grid:
+        :return:
+        """
+        if not grid:
+            return 0
+        m, n = len(grid), len(grid[0])
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    down = 2 if i < m-1 and grid[i+1][j] == 1 else 0
+                    right = 2 if j < n-1 and grid[i][j+1] == 1 else 0
+                    ans += 4 - down - right
+
+        return ans

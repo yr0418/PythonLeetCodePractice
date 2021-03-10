@@ -6,6 +6,6 @@ from solution_middle import Solution as SolutionMiddle
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
     num = 5
-    g = 1
+    g = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
     s = 4
-    print(solution.hammingDistance(g, s))
+    print(solution.islandPerimeter(g))
