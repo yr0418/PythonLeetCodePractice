@@ -1670,3 +1670,18 @@ class Solution:
                     ans += 4 - down - right
 
         return ans
+
+    def findComplement(self, num: int) -> int:
+        """
+        :description: 数字的补数
+        :param num:
+        :return:
+        """
+        res = 0
+        tmp = num
+        while num:
+            # 记录 num 最高位 所在的 位置
+            res += 1
+            num = num >> 1
+        return ((1 << res)-1) ^ tmp
+
