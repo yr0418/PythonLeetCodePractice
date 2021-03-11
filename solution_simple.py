@@ -1722,4 +1722,17 @@ class Solution:
                 count_1 = 0
         return max(count_1, max_count)
 
+    def constructRectangle(self, area: int) -> List[int]:
+        """
+        :description: 构造矩形
+        :param area:
+        :return:
+        """
+        w = int(math.sqrt(area))
+        width, length = 0, 0
+        for i in range(w, 1, -1):
+            if area % i == 0:
+                width = i
+                return [(area//width), width]
+
 
