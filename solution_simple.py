@@ -1735,4 +1735,26 @@ class Solution:
                 width = i
                 return [(area//width), width]
 
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        """
+        :description: 下一个更大的元素 I
+        :param nums1:
+        :param nums2:
+        :return:
+        """
+        stack = []
+        hash_num = dict()
+        res_list = list()
+        for num in nums2:
+            while len(stack) != 0 and num > stack[-1]:
+                hash_num[stack.pop()] = num
+            stack.append(num)
+
+        while len(stack) != 0:
+            hash_num[stack.pop()] = -1
+
+        for num in nums1:
+            res_list.append(hash_num[num])
+
+        return res_list
 

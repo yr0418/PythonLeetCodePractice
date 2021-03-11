@@ -6,7 +6,7 @@ from solution_middle import Solution as SolutionMiddle
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
     num = 5
-    g = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
-    s = 6
-    print(solution.constructRectangle(s))
+    g = [4,1,2]
+    s = [1,3,4,2]
+    print(solution.nextGreaterElement(g,s))
 
