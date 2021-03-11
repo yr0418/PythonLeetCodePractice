@@ -1685,3 +1685,27 @@ class Solution:
             num = num >> 1
         return ((1 << res)-1) ^ tmp
 
+    def licenseKeyFormatting(self, S: str, K: int) -> str:
+        """
+        :description: 密钥格式化
+        :param S:
+        :param K:
+        :return:
+        """
+        format_s = ""
+        len_s = 0
+        for char in S:
+            if char != "-":
+                format_s += char.upper()
+                len_s += 1
+        remainder = len_s % K
+        res_s = format_s[0:remainder]
+        for i in range(remainder, len_s, K):
+            res_s += "-" + format_s[i: i+K]
+
+        if remainder == 0:
+            res_s = res_s[1:]
+        return res_s
+
+
+
