@@ -1758,3 +1758,19 @@ class Solution:
 
         return res_list
 
+    def findWords(self, words: List[str]) -> List[str]:
+        """
+        :description: 键盘行
+        :param words:
+        :return:
+        """
+        keyboard = [set("qwertyuiop"), set("asdfghjkl"), set("zxcvbnm")]
+        res_list = []
+        for word in words:
+            word_set = set(word.lower())
+            for set_x in keyboard:
+                if word_set <= set_x:
+                    res_list.append(word)
+                    break
+        return res_list
+
