@@ -1707,5 +1707,19 @@ class Solution:
             res_s = res_s[1:]
         return res_s
 
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        """
+        :description: 最大连续 1 的个数
+        :param nums:
+        :return:
+        """
+        max_count, count_1 = 0, 0
+        for num in nums:
+            if num == 1:
+                count_1 += 1
+            else:
+                max_count = max(count_1, max_count)
+                count_1 = 0
+        return max(count_1, max_count)
 
 
