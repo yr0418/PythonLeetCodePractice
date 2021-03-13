@@ -1825,6 +1825,19 @@ class Solution:
 
         return cur
 
+    def detectCapitalUse(self, word: str) -> bool:
+        """
+        :description: 检测大写字母
+        :param word:
+        :return:
+        """
+        return word.islower() or word.isupper() or word.istitle()
+
+        # 运用字符串的方法str.islower()可以检验字符串是否全为小写，如果小写则返回True
+        # str.isupper()可以检验字符串是否全为大写，如果大写则返回True
+        # str.istitle()用来判断字符串首字母是否为大写，
+        #    1.如果字符串只有一个单词且首字母为大写，返回结果True，
+        #    2.如果字符串含有多个单词且每个单词首字母为大写，返回结果False
 
 
 
