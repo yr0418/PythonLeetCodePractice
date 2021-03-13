@@ -1810,5 +1810,21 @@ class Solution:
 
         return ans == num
 
+    def fib(self, n: int) -> int:
+        """
+        :description: 斐波那契数列
+        :param n:
+        :return:
+        """
+        if n < 2:
+            return n
+        pre_2, pre_1, cur = 0, 0, 1
+        for i in range(2, n+1):
+            pre_2, pre_1 = pre_1, cur
+            cur = pre_2 + pre_1
+
+        return cur
+
+
 
 
