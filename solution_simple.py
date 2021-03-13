@@ -1774,3 +1774,21 @@ class Solution:
                     break
         return res_list
 
+    def convertToBase7(self, num: int) -> str:
+        """
+        :description: 七进制数
+        :param num:
+        :return:
+        """
+        if num == 0:
+            return "0"
+        res_str = ""
+        cur_num = abs(num)
+        while cur_num != 0:
+            remainder = str(cur_num % 7)
+            res_str = remainder + res_str
+            cur_num = cur_num // 7
+
+        return res_str if num > 0 else "-"+res_str
+
+

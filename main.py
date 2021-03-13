@@ -6,7 +6,7 @@ from solution_middle import Solution as SolutionMiddle
 if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
     num = 5
-    g = ["Hello","Alaska","Dad","Peace"]
+    g = -7
     s = [1,3,4,2]
-    print(solution.findWords(g))
+    print(solution.convertToBase7(g))
 
