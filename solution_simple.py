@@ -1791,4 +1791,24 @@ class Solution:
 
         return res_str if num > 0 else "-"+res_str
 
+    def checkPerfectNumber(self, num: int) -> bool:
+        """
+        :description: 完美数
+        :param num:
+        :return:
+        """
+        ans = 1
+        n = int(math.sqrt(num)) + 1
+        for i in range(2, n):
+            if num % i == 0:
+                factor = num // i
+                if factor == i:
+                    ans += i
+                    break
+                else:
+                    ans = ans + factor + i
+
+        return ans == num
+
+
 
