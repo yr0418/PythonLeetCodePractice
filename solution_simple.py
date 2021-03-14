@@ -1851,4 +1851,19 @@ class Solution:
         else:
             return max(len(a), len(b))
 
+    def reverseStr(self, s: str, k: int) -> str:
+        """
+        :description: 反转字符串 II
+        :param s:
+        :param k:
+        :return:
+        """
+        a = list(s)
+        for i in range(0, len(a), 2 * k):
+            a[i:i + k] = reversed(a[i:i + k])
+        return "".join(a)
+
+
+        
+
 
