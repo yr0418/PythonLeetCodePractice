@@ -1839,5 +1839,16 @@ class Solution:
         #    1.如果字符串只有一个单词且首字母为大写，返回结果True，
         #    2.如果字符串含有多个单词且每个单词首字母为大写，返回结果False
 
+    def findLUSlength(self, a: str, b: str) -> int:
+        """
+        :description: 最长特殊序列
+        :param a:
+        :param b:
+        :return:
+        """
+        if a == b:
+            return -1
+        else:
+            return max(len(a), len(b))
 
 
