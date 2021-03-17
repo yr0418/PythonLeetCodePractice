@@ -1909,4 +1909,45 @@ class Solution:
 
         return sum(nums[::2])
         
+    def matrixReshape_1(self, nums: List[List[int]], r: int, c: int) -> List[List[int]]:
+        """
+        :description: 重塑矩阵，借助一维数组
+        :param nums:
+        :param r:
+        :param c:
+        :return:
+        """
+        temp_list = list()
+        res_list = list()
+        for num_list in nums:
+            for num in num_list:
+                temp_list.append(num)
 
+        if r*c != len(temp_list):
+            return nums
+
+        index = 0
+        for i in range(r):
+            c_list = temp_list[index: index+c]
+            res_list.append(c_list)
+            index += c
+
+        return res_list
+
+    def matrixReshape_2(self, nums: List[List[int]], r: int, c: int) -> List[List[int]]:
+        """
+        :description: 重塑矩阵，直接映射
+        :param nums:
+        :param r:
+        :param c:
+        :return:
+        """
+        m, n = len(nums), len(nums[0])
+        if m*n != r*c:
+            return nums
+
+        ans = [[0]*c for i in range(r)]
+        for x in range(m*n):
+            ans[x // c][x % c] = nums[x // n][x % n]
+
+        return ans
