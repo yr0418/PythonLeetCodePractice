@@ -1951,3 +1951,12 @@ class Solution:
             ans[x // c][x % c] = nums[x // n][x % n]
 
         return ans
+
+    def distributeCandies(self, candyType: List[int]) -> int:
+        """
+        :description: 分糖果
+        :param candyType:
+        :return:
+        """
+        return min(len(set(candyType)), len(candyType)//2)
+    
