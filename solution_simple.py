@@ -1863,6 +1863,25 @@ class Solution:
             a[i:i + k] = reversed(a[i:i + k])
         return "".join(a)
 
+    def checkRecord(self, s: str) -> bool:
+        """
+        :description: 学生出勤记录
+        :param s:
+        :return:
+        """
+        count_a = 0
+        for i in range(len(s)):
+            if s[i] == "A":
+                count_a += 1
+                if count_a == 2:
+                    return False
+            elif s[i] == "L":
+                if 0 < i < len(s)-1:
+                    if s[i-1] == "L" and s[i+1] == "L":
+                        return False
+
+        return True
+                
 
         
 
