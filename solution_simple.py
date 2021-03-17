@@ -1882,6 +1882,22 @@ class Solution:
 
         return True
                 
+    def reverseWords(self, s: str) -> str:
+        """
+        :description: 反转字符串中的单词
+        :param s:
+        :return:
+        """
+        res = ""
+        word = ""
+        for i in s:
+            if i != " ":
+                word = i + word
+            else:
+                res += word + " "
+                word = ""
+        res += word
+        return res
 
         
 
