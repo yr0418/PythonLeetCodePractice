@@ -1899,6 +1899,14 @@ class Solution:
         res += word
         return res
 
-        
+    def arrayPairSum(self, nums: List[int]) -> int:
+        """
+        :description: 数组拆分 I
+        :param nums:
+        :return:
+        """
+        list.sort(nums)
 
+        return sum(nums[::2])
+        
 
