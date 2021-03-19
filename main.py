@@ -7,6 +7,6 @@ if __name__ == '__main__':
     solution = SolutionSimple()  # 调用类时，先进行类的初始化
     num = 5
     g = "Let's take LeetCode contest"
-    s = [[1, 3, 2], [4, 5, 6]]
-    print(solution.matrixReshape(s, 3, 2))
+    s = [1,3,2,2,5,2,3,7]
+    print(solution.findLHS_2(s))
 

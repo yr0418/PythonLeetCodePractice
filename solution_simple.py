@@ -1959,4 +1959,41 @@ class Solution:
         :return:
         """
         return min(len(set(candyType)), len(candyType)//2)
-    
+
+    def findLHS_1(self, nums: List[int]) -> int:
+        """
+        :description: 最长和谐子序列，哈希表映射
+        :param nums:
+        :return:
+        """
+        nums_dict = collections.Counter(nums)
+        if len(nums_dict.keys()) == 1:
+            return 0
+        length = 0
+        keys = nums_dict.keys()
+        for key in keys:
+            if (key+1) in keys:
+                count = nums_dict[key] + nums_dict[key+1]
+                length = max(length, count)
+        return length
+
+    def findLHS_2(self, nums: List[int]) -> int:
+        """
+        :description: 最长和谐子序列，哈希表+单次扫描
+        :param nums:
+        :return:
+        """
+        nums_dict = dict()
+        length = 0
+        for num in nums:
+            if num in nums_dict:
+                nums_dict[num] += 1
+            else:
+                nums_dict.setdefault(num, 1)
+            if (num+1) in nums_dict:
+                length = max(length, (nums_dict[num] + nums_dict[num+1]))
+
+            if (num-1) in nums_dict:
+                length = max(length, (nums_dict[num] + nums_dict[num-1]))
+
+        return length
