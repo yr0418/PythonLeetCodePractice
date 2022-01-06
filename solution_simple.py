@@ -1997,3 +1997,58 @@ class Solution:
                 length = max(length, (nums_dict[num] + nums_dict[num-1]))
 
         return length
+
+    def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:
+        """
+        范围求和 II
+        """
+        min_a, min_b = m, n
+        for item_list in ops:
+            if item_list[0] < min_a:
+                min_a = item_list[0]
+
+            if item_list[1] < min_b:
+                min_b = item_list[1]
+
+        return min_a * min_b
+
+    def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
+        """
+        两个列表的最小索引和
+        """
+        result = list()
+        dict1 = dict()
+        min_index = len(list1) + len(list2)
+
+        for i in range(0, len(list1)):
+            dict1[list1[i]] = i
+
+        for j in range(0, len(list2)):
+            if list2[j] in dict1:
+                if dict1[list2[j]]+j < min_index:
+                    result.clear()
+                    result.append(list2[j])
+                    min_index = dict1[list2[j]]+j
+                elif dict1[list2[j]]+j == min_index:
+                    result.append(list2[j])
+
+        return result
+
+    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+        """ 种花问题 """
+        count, m, prev = 0, len(flowerbed), -1
+        for i in range(m):
+            if flowerbed[i] == 1:
+                if prev < 0:
+                    count += i//2
+                else:
+                    count += (i-prev-2)//2
+                if count > n:
+                    return True
+                prev = i
+        if prev < 0:
+            count += (m+1)//2
+        else:
+            count += (m-prev-1)//2
+
+        return count >= n
